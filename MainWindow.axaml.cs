@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
@@ -14,8 +15,8 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+    public string filePath = null;
 
-    string filePath = null;
     private async void selectFileButton_Click(object sender, RoutedEventArgs e)
     {
         var topLevel = TopLevel.GetTopLevel(this);
@@ -27,7 +28,8 @@ public partial class MainWindow : Window
 
         if (file.Count >= 1)
         {
-            filePath = file.First().Path.ToString();
+            filePath = file.First().Path.PathAndQuery;
+            Console.WriteLine(filePath);
         }
     }
 
@@ -50,11 +52,53 @@ public partial class MainWindow : Window
 
     private void calculateButton_Click(object sender, RoutedEventArgs e)
     {
+        var sha1String = calculateSHA1();
+        var sha256String = calculateSHA256();
+        var sha512String = calculateSHA512();
+        var md5String = calculateMD5();
+    }
+
+    public string calculateSHA1()
+    {
+        using (var sha1 = SHA1.Create())
+        {
+            using (var stream = File.OpenRead(filePath))
+            {
+                var hash = sha1.ComputeHash(stream);
+                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
+            }
+        }
+    }
+    public string calculateSHA256()
+    {
+        using (var sha256 = SHA256.Create())
+        {
+            using (var stream = File.OpenRead(filePath))
+            {
+                var hash = sha256.ComputeHash(stream);
+                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
+            }
+        }
+    }
+    public string calculateSHA512()
+    {
+        using (var sha512 = SHA512.Create())
+        {
+            using (var stream = File.OpenRead(filePath))
+            {
+                var hash = sha512.ComputeHash(stream);
+                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
+            }
+        }
+    }
+    public string calculateMD5()
+    {
         using (var md5 = MD5.Create())
         {
             using (var stream = File.OpenRead(filePath))
             {
-                Console.WriteLine("temp");
+                var hash = md5.ComputeHash(stream);
+                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
             }
         }
     }
