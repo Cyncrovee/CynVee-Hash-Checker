@@ -5,25 +5,30 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CynVee_Hash_Checker.MainWindow"
         Title="CynVee_Hash_Checker">
-    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*, *, *, *, Auto">
+    <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto, *, *, *, *, Auto">
         <Button x:Name="selectFileButton" Click="selectFileButton_Click" Content="Select File" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+        <TextBlock x:Name="filePathBlock" Text="Currently Selected File: " FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
 
-        <TextBlock Text="SHA-1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
-        <TextBox x:Name="sha1TextBox" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="sha1Button" Click="sha1Button_Click" Content="Paste" Grid.Column="2" Grid.Row="1"/>
+        <TextBlock Text="SHA-1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+        <TextBox x:Name="sha1TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2"/>
+        <Button x:Name="sha1Button" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="sha1Button_Click" Content="Paste" Grid.Column="2" Grid.Row="2"/>
+        <TextBlock x:Name="sha1ResultBlock" Text="Result: " FontSize="18" Margin="5,5,0,0" Grid.Column="1" Grid.Row="2"/> 
 
-        <TextBlock Text="SHA-256" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
-        <TextBox x:Name="sha256TextBox" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="2"/>
-        <Button Click="sha256Button_Click" Content="Paste" Grid.Column="2" Grid.Row="2"/>
+        <TextBlock Text="SHA-256" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+        <TextBox x:Name="sha256TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="3"/>
+        <Button Click="sha256Button_Click" Content="Paste" Grid.Column="2" Grid.Row="3"/>
+        <TextBlock x:Name="sha256ResultBlock" Text="Result: " FontSize="18" Margin="5,5,0,0" Grid.Column="1" Grid.Row="3"/>
 
-        <TextBlock Text="SHA-512" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
-        <TextBox x:Name="sha512TextBox" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="3"/>
-        <Button Click="sha512Button_Click" Content="Paste" Grid.Column="2" Grid.Row="3"/>
+        <TextBlock Text="SHA-512" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4"/>
+        <TextBox x:Name="sha512TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4"/>
+        <Button Click="sha512Button_Click" Content="Paste" Grid.Column="2" Grid.Row="4"/>
+        <TextBlock x:Name="sha512ResultBlock" Text="Result: " FontSize="18" Margin="5,5,0,0" Grid.Column="1" Grid.Row="4"/>
 
-        <TextBlock Text="MD5" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4"/>
-        <TextBox x:Name="md5TextBox" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="4"/>
-        <Button Click="md5Button_Click" Content="Paste" Grid.Column="2" Grid.Row="4"/>
+        <TextBlock Text="MD5" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5"/>
+        <TextBox x:Name="md5TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="5"/>
+        <Button Click="md5Button_Click" Content="Paste" Grid.Column="2" Grid.Row="5"/>
+        <TextBlock x:Name="md5ResultBlock" Text="Result: " FontSize="18" Margin="5,5,0,0" Grid.Column="1" Grid.Row="5"/>
 
-        <Button x:Name="calculateButton" Click="calculateButton_Click" Content="Calculate" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
+        <Button x:Name="calculateButton" Click="calculateButton_Click" Content="Calculate" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
     </Grid>
 </Window>
