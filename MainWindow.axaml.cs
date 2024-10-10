@@ -21,6 +21,11 @@ public partial class MainWindow : Window
     }
     public string filePath = null;
 
+    public string sha1String = null;
+    public string sha256String = null;
+    public string sha512String = null;
+    public string md5String = null;
+
     private async void selectFileButton_Click(object sender, RoutedEventArgs e)
     {
         var topLevel = TopLevel.GetTopLevel(this);
@@ -54,12 +59,41 @@ public partial class MainWindow : Window
         md5TextBox.Paste();
     }
 
+    private async void sha1CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sha1String != null & Clipboard != null)
+        {
+            await Clipboard.SetTextAsync(sha1String);
+        }
+    }
+    private async void sha256CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sha256String != null & Clipboard != null)
+        {
+            await Clipboard.SetTextAsync(sha256String);
+        }
+    }
+    private async void sha512CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sha512String != null & Clipboard != null)
+        {
+            await Clipboard.SetTextAsync(sha512String);
+        }
+    }
+    private async void md5CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (md5String != null & Clipboard != null)
+        {
+            await Clipboard.SetTextAsync(md5String);
+        }
+    }
+
     private void calculateButton_Click(object sender, RoutedEventArgs e)
     {
-        var sha1String = calculateSHA1();
-        var sha256String = calculateSHA256();
-        var sha512String = calculateSHA512();
-        var md5String = calculateMD5();
+        sha1String = calculateSHA1();
+        sha256String = calculateSHA256();
+        sha512String = calculateSHA512();
+        md5String = calculateMD5();
 
         if (sha1TextBox.Text != null)
         {
