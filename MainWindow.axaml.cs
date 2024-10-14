@@ -175,6 +175,17 @@ public partial class MainWindow : Window
             }
         }
     }
+    public string calculateSHA384()
+    {
+        using (var sha384 = SHA384.Create())
+        {
+            using (var stream = File.OpenRead(filePath))
+            {
+                var hash = sha384.ComputeHash(stream)
+                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
+            }
+        }
+    }
     public string calculateSHA512()
     {
         using (var sha512 = SHA512.Create())
