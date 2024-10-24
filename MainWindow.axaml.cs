@@ -53,7 +53,7 @@ public partial class MainWindow : Window
     }
     private void sha384Button_Click(object sender, RoutedEventArgs e)
     {
-        sha256TextBox.Paste();
+        sha384TextBox.Paste();
     }
     private void sha512Button_Click(object sender, RoutedEventArgs e)
     {
@@ -186,7 +186,6 @@ public partial class MainWindow : Window
             Console.WriteLine("Failed to calculate!");
         }
     }
-
     public string calculateSHA1()
     {
         using (var sha1 = SHA1.Create())
