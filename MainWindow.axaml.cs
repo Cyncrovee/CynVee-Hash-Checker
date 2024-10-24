@@ -37,7 +37,7 @@ public partial class MainWindow : Window
 
         if (file.Count >= 1)
         {
-            filePath = file.First().Path.AbsolutePath;
+            filePath = file.First().Path.LocalPath;
             filePathBlock.Text = "Currently Selected File: " + filePath;
         }
     }
@@ -90,66 +90,73 @@ public partial class MainWindow : Window
 
     private void calculateButton_Click(object sender, RoutedEventArgs e)
     {
-        sha1String = calculateSHA1();
-        sha256String = calculateSHA256();
-        sha512String = calculateSHA512();
-        md5String = calculateMD5();
+        try
+        {
+            sha1String = calculateSHA1();
+            sha256String = calculateSHA256();
+            sha512String = calculateSHA512();
+            md5String = calculateMD5();
 
-        if (sha1TextBox.Text != null)
-        {
-            bool sha1Result = sha1TextBox.Text.Equals(sha1String);
-            if (sha1Result == true)
+            if (sha1TextBox.Text != null)
             {
-                sha1ResultBlock.Text = "Result: True- Hashes match! Value: " + sha1String;
-                sha1ResultBlock.Foreground = Brushes.LightGreen;
+                bool sha1Result = sha1TextBox.Text.Equals(sha1String);
+                if (sha1Result == true)
+                {
+                    sha1ResultBlock.Text = "Result: True- Hashes match! Value: " + sha1String;
+                    sha1ResultBlock.Foreground = Brushes.LightGreen;
+                }
+                else
+                {
+                    sha1ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha1String;
+                    sha1ResultBlock.Foreground = Brushes.Crimson;
+                }
             }
-            else
+            if (sha256TextBox.Text != null)
             {
-                sha1ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha1String;
-                sha1ResultBlock.Foreground = Brushes.Crimson;
+                bool sha256Result = sha256TextBox.Text.Equals(sha256String);
+                if (sha256Result == true)
+                {
+                    sha256ResultBlock.Text = "Result: True- Hashes match! Value: " + sha256String;
+                    sha256ResultBlock.Foreground = Brushes.LightGreen;
+                }
+                else
+                {
+                    sha256ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha256String;
+                    sha256ResultBlock.Foreground = Brushes.Crimson;
+                }
+            }
+            if (sha512TextBox.Text != null)
+            {
+                bool sha512Result = sha512TextBox.Text.Equals(sha512String);
+                if (sha512Result == true)
+                {
+                    sha512ResultBlock.Text = "Result: True- Hashes match! Value: " + sha512String;
+                    sha512ResultBlock.Foreground = Brushes.LightGreen;
+                }
+                else
+                {
+                    sha512ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha512String;
+                    sha512ResultBlock.Foreground = Brushes.Crimson;
+                }
+            }
+            if (md5TextBox.Text != null)
+            {
+                bool md5Result = md5TextBox.Text.Equals(md5String);
+                if (md5Result == true)
+                {
+                    md5ResultBlock.Text = "Result: True- Hashes match! Value: " + md5String;
+                    md5ResultBlock.Foreground = Brushes.LightGreen;
+                }
+                else
+                {
+                    md5ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + md5String;
+                    md5ResultBlock.Foreground = Brushes.Crimson;
+                }
             }
         }
-        if (sha256TextBox.Text != null)
+        catch
         {
-            bool sha256Result = sha256TextBox.Text.Equals(sha256String);
-            if (sha256Result == true)
-            {
-                sha256ResultBlock.Text = "Result: True- Hashes match! Value: " + sha256String;
-                sha256ResultBlock.Foreground = Brushes.LightGreen;
-            }
-            else
-            {
-                sha256ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha256String;
-                sha256ResultBlock.Foreground = Brushes.Crimson;
-            }
-        }
-        if (sha512TextBox.Text != null)
-        {
-            bool sha512Result = sha512TextBox.Text.Equals(sha512String);
-            if (sha512Result == true)
-            {
-                sha512ResultBlock.Text = "Result: True- Hashes match! Value: " + sha512String;
-                sha512ResultBlock.Foreground = Brushes.LightGreen;
-            }
-            else
-            {
-                sha512ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha512String;
-                sha512ResultBlock.Foreground = Brushes.Crimson;
-            }
-        }
-        if (md5TextBox.Text != null)
-        {
-            bool md5Result = md5TextBox.Text.Equals(md5String);
-            if (md5Result == true)
-            {
-                md5ResultBlock.Text = "Result: True- Hashes match! Value: " + md5String;
-                md5ResultBlock.Foreground = Brushes.LightGreen;
-            }
-            else
-            {
-                md5ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + md5String;
-                md5ResultBlock.Foreground = Brushes.Crimson;
-            }
+            Console.WriteLine("Failed to calculate!");
         }
     }
 
@@ -175,7 +182,7 @@ public partial class MainWindow : Window
             }
         }
     }
-    public string calculateSHA384()
+    /*public string calculateSHA384()
     {
         using (var sha384 = SHA384.Create())
         {
@@ -185,7 +192,7 @@ public partial class MainWindow : Window
                 return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
             }
         }
-    }
+    }*/
     public string calculateSHA512()
     {
         using (var sha512 = SHA512.Create())
