@@ -42,6 +42,27 @@ public partial class MainWindow : Window
             filePathBlock.Text = "Currently Selected File: " + filePath;
         }
     }
+    
+    private void sha1ClearButton_Click(object? sender, RoutedEventArgs e)
+    {
+        sha1TextBox.Clear();
+    }
+    private void sha256ClearButton_Click(object? sender, RoutedEventArgs e)
+    {
+        sha256TextBox.Clear();
+    }
+    private void sha384ClearButton_Click(object? sender, RoutedEventArgs e)
+    {
+        sha384TextBox.Clear();
+    }
+    private void sha512ClearButton_Click(object? sender, RoutedEventArgs e)
+    {
+        sha512TextBox.Clear();
+    }
+    private void md5ClearButton_Click(object? sender, RoutedEventArgs e)
+    {
+        md5TextBox.Clear();
+    }
 
     private void sha1Button_Click(object sender, RoutedEventArgs e)
     {
