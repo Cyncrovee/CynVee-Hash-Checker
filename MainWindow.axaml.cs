@@ -23,6 +23,7 @@ public partial class MainWindow : Window
 
     public string sha1String = null;
     public string sha256String = null;
+    public string sha384String = null;
     public string sha512String = null;
     public string md5String = null;
 
@@ -50,6 +51,10 @@ public partial class MainWindow : Window
     {
         sha256TextBox.Paste();
     }
+    private void sha384Button_Click(object sender, RoutedEventArgs e)
+    {
+        sha256TextBox.Paste();
+    }
     private void sha512Button_Click(object sender, RoutedEventArgs e)
     {
         sha512TextBox.Paste();
@@ -71,6 +76,13 @@ public partial class MainWindow : Window
         if (sha256String != null & Clipboard != null)
         {
             await Clipboard.SetTextAsync(sha256String);
+        }
+    }
+    private async void sha384CopyButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sha384String != null & Clipboard != null)
+        {
+            await Clipboard.SetTextAsync(sha384String);
         }
     }
     private async void sha512CopyButton_Click(object sender, RoutedEventArgs e)
@@ -95,7 +107,10 @@ public partial class MainWindow : Window
             sha1String = calculateSHA1();
             sha256String = calculateSHA256();
             sha512String = calculateSHA512();
+            sha384String = calculateSHA384();
             md5String = calculateMD5();
+            
+            Console.WriteLine(sha384String);
 
             if (sha1TextBox.Text != null)
             {
@@ -123,6 +138,20 @@ public partial class MainWindow : Window
                 {
                     sha256ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha256String;
                     sha256ResultBlock.Foreground = Brushes.Crimson;
+                }
+            }
+            if (sha384TextBox.Text != null)
+            {
+                bool sha384Result = sha384TextBox.Text.Equals(sha384String);
+                if (sha384Result == true)
+                {
+                    sha384ResultBlock.Text = "Result: True- Hashes match! Value: " + sha384String;
+                    sha384ResultBlock.Foreground = Brushes.LightGreen;
+                }
+                else
+                {
+                    sha384ResultBlock.Text = "Result: False- Hashes dont match! Actual value: " + sha384String;
+                    sha384ResultBlock.Foreground = Brushes.Crimson;
                 }
             }
             if (sha512TextBox.Text != null)
@@ -182,17 +211,17 @@ public partial class MainWindow : Window
             }
         }
     }
-    /*public string calculateSHA384()
+    public string calculateSHA384()
     {
         using (var sha384 = SHA384.Create())
         {
             using (var stream = File.OpenRead(filePath))
             {
-                var hash = sha384.ComputeHash(stream)
+                var hash = sha384.ComputeHash(stream);
                 return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
             }
         }
-    }*/
+    }
     public string calculateSHA512()
     {
         using (var sha512 = SHA512.Create())
