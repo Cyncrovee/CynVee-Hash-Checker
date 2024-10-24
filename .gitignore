@@ -1,9 +1,11 @@
-*.suo
-*.user
 .idea/
 [Bb]in/
 [Oo]bj/
-packages
+publish/
+
+*.suo
+*.user
 *.coverage
 *.coveragexml
-publish/
+
+packages
