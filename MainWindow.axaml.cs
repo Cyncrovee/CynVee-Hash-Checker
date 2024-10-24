@@ -43,6 +43,15 @@ public partial class MainWindow : Window
         }
     }
     
+    private void clearAllButton_Click(object? sender, RoutedEventArgs e)
+    {
+        sha1TextBox.Clear();
+        sha256TextBox.Clear();
+        sha384TextBox.Clear();
+        sha512TextBox.Clear();
+        md5TextBox.Clear();
+    }
+    
     private void sha1ClearButton_Click(object? sender, RoutedEventArgs e)
     {
         sha1TextBox.Clear();
@@ -64,23 +73,23 @@ public partial class MainWindow : Window
         md5TextBox.Clear();
     }
 
-    private void sha1Button_Click(object sender, RoutedEventArgs e)
+    private void sha1PasteButton_Click(object sender, RoutedEventArgs e)
     {
         sha1TextBox.Paste();
     }
-    private void sha256Button_Click(object sender, RoutedEventArgs e)
+    private void sha256PasteButton_Click(object sender, RoutedEventArgs e)
     {
         sha256TextBox.Paste();
     }
-    private void sha384Button_Click(object sender, RoutedEventArgs e)
+    private void sha384PasteButton_Click(object sender, RoutedEventArgs e)
     {
         sha384TextBox.Paste();
     }
-    private void sha512Button_Click(object sender, RoutedEventArgs e)
+    private void sha512PasteButton_Click(object sender, RoutedEventArgs e)
     {
         sha512TextBox.Paste();
     }
-    private void md5Button_Click(object sender, RoutedEventArgs e)
+    private void md5PasteButton_Click(object sender, RoutedEventArgs e)
     {
         md5TextBox.Paste();
     }
