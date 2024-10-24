@@ -1,6 +1,6 @@
 *.suo
 *.user
-.idea/*
+.idea/
 [Bb]in/
 [Oo]bj/
 packages
