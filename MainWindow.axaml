@@ -7,43 +7,44 @@
         Title="CynVee_Hash_Checker">
     <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto, *, *, *, *, *, Auto">
         <Button x:Name="selectFileButton" Click="selectFileButton_Click" Content="Select File" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+        <Button x:Name="clearAllButton" Click="clearAllButton_Click" Content="Clear All" ToolTip.Tip="Clear all inputted content from text boxes" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" Grid.Column="2" Grid.Row="0"/>
         <TextBlock x:Name="filePathBlock" Text="Currently Selected File: " FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
 
         <TextBlock Text="SHA-1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2"/>
         <TextBox x:Name="sha1TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="1" Grid.Row="2"/>
         <Button x:Name="sha1ClearButton" Click="sha1ClearButton_Click" Content="Clear" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,0,60" Grid.Column="2" Grid.Row="2"/>
-        <Button x:Name="sha1Button" Click="sha1Button_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Paste" Margin="1,0,60,0" Grid.Column="2" Grid.Row="2"/>
-        <Button x:Name="sha1CopyButton" Click="sha1CopyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Copy Result" Margin="1,60,0,0" Grid.Column="2" Grid.Row="2"/>
+        <Button x:Name="sha1PasteButton" Click="sha1PasteButton_Click" Content="Paste" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,60,0" Grid.Column="2" Grid.Row="2"/>
+        <Button x:Name="sha1CopyButton" Click="sha1CopyButton_Click" Content="Copy Result" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,60,0,0" Grid.Column="2" Grid.Row="2"/>
         <TextBlock x:Name="sha1ResultBlock" Text="Result: " FontSize="15" Margin="5,5,0,0" Grid.Column="1" Grid.Row="2"/>
 
         <TextBlock Text="SHA-256" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3"/>
         <TextBox x:Name="sha256TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="1" Grid.Row="3"/>
         <Button x:Name="sha256ClearButton" Click="sha256ClearButton_Click" Content="Clear" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,0,60" Grid.Column="2" Grid.Row="3"/>
-        <Button Click="sha256Button_Click" Content="Paste" Margin="1,0,60,0" Grid.Column="2" Grid.Row="3"/>
-        <Button x:Name="sha256CopyButton" Click="sha256CopyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Copy Result" Margin="1,60,0,0" Grid.Column="2" Grid.Row="3"/>
+        <Button x:Name="sha256PasteButton" Click="sha256PasteButton_Click" Content="Paste" Margin="1,0,60,0" Grid.Column="2" Grid.Row="3"/>
+        <Button x:Name="sha256CopyButton" Click="sha256CopyButton_Click" Content="Copy Result" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,60,0,0" Grid.Column="2" Grid.Row="3"/>
         <TextBlock x:Name="sha256ResultBlock" Text="Result: " FontSize="15" Margin="5,5,0,0" Grid.Column="1" Grid.Row="3"/>
         
         <TextBlock Text="SHA-384" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4"/>
         <TextBox x:Name="sha384TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="1" Grid.Row="4"/>
         <Button x:Name="sha384ClearButton" Click="sha384ClearButton_Click" Content="Clear" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,0,60" Grid.Column="2" Grid.Row="4"/>
-        <Button Click="sha384Button_Click" Content="Paste" Margin="1,0,60,0" Grid.Column="2" Grid.Row="4"/>
-        <Button x:Name="sha384CopyButton" Click="sha384CopyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Copy Result" Margin="1,60,0,0" Grid.Column="2" Grid.Row="4"/>
+        <Button x:Name="sha384PasteButton" Click="sha384PasteButton_Click" Content="Paste" Margin="1,0,60,0" Grid.Column="2" Grid.Row="4"/>
+        <Button x:Name="sha384CopyButton" Click="sha384CopyButton_Click" Content="Copy Result" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,60,0,0" Grid.Column="2" Grid.Row="4"/>
         <TextBlock x:Name="sha384ResultBlock" Text="Result: " FontSize="15" Margin="5,5,0,0" Grid.Column="1" Grid.Row="4"/>
 
         <TextBlock Text="SHA-512" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="5"/>
         <TextBox x:Name="sha512TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="1" Grid.Row="5"/>
         <Button x:Name="sha512ClearButton" Click="sha512ClearButton_Click" Content="Clear" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,0,60" Grid.Column="2" Grid.Row="5"/>
-        <Button Click="sha512Button_Click" Content="Paste" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,60,0" Grid.Column="2" Grid.Row="5"/>
-        <Button x:Name="sha512CopyButton" Click="sha512CopyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Copy Result" Margin="1,60,0,0" Grid.Column="2" Grid.Row="5"/>
+        <Button x:Name="sha512PasteButton" Click="sha512PasteButton_Click" Content="Paste" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,60,0" Grid.Column="2" Grid.Row="5"/>
+        <Button x:Name="sha512CopyButton" Click="sha512CopyButton_Click" Content="Copy Result" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,60,0,0" Grid.Column="2" Grid.Row="5"/>
         <TextBlock x:Name="sha512ResultBlock" Text="Result: " FontSize="15" Margin="5,5,0,0" Grid.Column="1" Grid.Row="5"/>
 
         <TextBlock Text="MD5" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="6"/>
         <TextBox x:Name="md5TextBox" FontSize="18" AcceptsReturn="False" MaxLines="1" VerticalAlignment="Stretch" Margin="0,5,0,5" Grid.Column="1" Grid.Row="6"/>
         <Button x:Name="md5ClearButton" Click="md5ClearButton_Click" Content="Clear" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,0,60" Grid.Column="2" Grid.Row="6"/>
-        <Button Click="md5Button_Click" Content="Paste" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,60,0" Grid.Column="2" Grid.Row="6"/>
-        <Button x:Name="md5CopyButton" Click="md5CopyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Copy Result" Margin="1,60,0,0" Grid.Column="2" Grid.Row="6"/>
+        <Button x:Name="md5PasteButton" Click="md5PasteButton_Click" Content="Paste" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,0,60,0" Grid.Column="2" Grid.Row="6"/>
+        <Button x:Name="md5CopyButton" Click="md5CopyButton_Click" Content="Copy Result" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="1,60,0,0" Grid.Column="2" Grid.Row="6"/>
         <TextBlock x:Name="md5ResultBlock" Text="Result: " FontSize="15" Margin="5,5,0,0" Grid.Column="1" Grid.Row="6"/>
 
-        <Button x:Name="calculateButton" Click="calculateButton_Click" Content="Calculate" ToolTip.Tip="TEMP" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
+        <Button x:Name="calculateButton" Click="calculateButton_Click" Content="Calculate" ToolTip.Tip="Calculate all hash functions that have text inputted in their relative text boxes" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
     </Grid>
 </Window>
