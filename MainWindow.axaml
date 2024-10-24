@@ -39,6 +39,6 @@
         <Button x:Name="md5CopyButton" Click="md5CopyButton_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Copy Result" Margin="1,60,0,0" Grid.Column="2" Grid.Row="6"/>
         <TextBlock x:Name="md5ResultBlock" Text="Result: " FontSize="15" Margin="5,5,0,0" Grid.Column="1" Grid.Row="6"/>
 
-        <Button x:Name="calculateButton" Click="calculateButton_Click" Content="Calculate" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
+        <Button x:Name="calculateButton" Click="calculateButton_Click" Content="Calculate" ToolTip.Tip="TEMP" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
     </Grid>
 </Window>

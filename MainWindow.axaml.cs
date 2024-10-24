@@ -109,8 +109,6 @@ public partial class MainWindow : Window
             sha512String = calculateSHA512();
             sha384String = calculateSHA384();
             md5String = calculateMD5();
-            
-            Console.WriteLine(sha384String);
 
             if (sha1TextBox.Text != null)
             {
