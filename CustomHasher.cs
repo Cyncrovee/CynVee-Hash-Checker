@@ -9,19 +9,19 @@ namespace CynVee_Hash_Checker;
 
 internal class CustomHasher
 {
-    Dictionary<Algorithm, HashAlgorithm> hashAlgorithms = new Dictionary<Algorithm, HashAlgorithm>();
+    private readonly Dictionary<Algorithm, HashAlgorithm> _hashAlgorithms = new Dictionary<Algorithm, HashAlgorithm>();
 
-    bool complete = false;
+    private bool _complete = false;
 
     internal CustomHasher()
     {
-        hashAlgorithms.Add(Algorithm.SHA1, SHA1.Create());
-        hashAlgorithms.Add(Algorithm.SHA256, SHA256.Create());
-        hashAlgorithms.Add(Algorithm.SHA512, SHA512.Create());
-        hashAlgorithms.Add(Algorithm.SHA384, SHA384.Create());
-        hashAlgorithms.Add(Algorithm.MD5, MD5.Create());
+        _hashAlgorithms.Add(Algorithm.SHA1, SHA1.Create());
+        _hashAlgorithms.Add(Algorithm.SHA256, SHA256.Create());
+        _hashAlgorithms.Add(Algorithm.SHA512, SHA512.Create());
+        _hashAlgorithms.Add(Algorithm.SHA384, SHA384.Create());
+        _hashAlgorithms.Add(Algorithm.MD5, MD5.Create());
 
-        foreach (var algorithm in hashAlgorithms)
+        foreach (var algorithm in _hashAlgorithms)
         {
             algorithm.Value.Initialize();
         }
@@ -29,9 +29,9 @@ internal class CustomHasher
 
     internal void TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount)
     {
-        if (complete) { throw new InvalidOperationException("Cannot transform block after final transform."); }
+        if (_complete) { throw new InvalidOperationException("Cannot transform block after final transform."); }
 
-        foreach (var algorithm in hashAlgorithms)
+        foreach (var algorithm in _hashAlgorithms)
         {
             algorithm.Value.TransformBlock(inputBuffer, inputOffset, inputCount, null, 0);
         }
@@ -39,20 +39,20 @@ internal class CustomHasher
 
     internal void TransformFinalBlock()
     {
-        foreach (var algorithm in hashAlgorithms)
+        foreach (var algorithm in _hashAlgorithms)
         {
-            algorithm.Value.TransformFinalBlock(new byte[0], 0, 0);
+            algorithm.Value.TransformFinalBlock(Array. Empty<byte>(), 0, 0);
         }
 
-        complete = true;
+        _complete = true;
     }
 
     internal Dictionary<Algorithm, string> GetHashes()
     {
-        if (!complete) { throw new InvalidOperationException("Cannot get hashes until final block transform"); }
+        if (!_complete) { throw new InvalidOperationException("Cannot get hashes until final block transform"); }
 
         var returnDictionary = new Dictionary<Algorithm, string>();
-        foreach (var algorithm in hashAlgorithms)
+        foreach (var algorithm in _hashAlgorithms)
         {
             
             returnDictionary.Add(algorithm.Key, BitConverter.ToString(algorithm.Value.Hash!).Replace("-", String.Empty).ToLowerInvariant());

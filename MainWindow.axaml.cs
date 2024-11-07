@@ -1,15 +1,10 @@
 using System;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
-using Color = Avalonia.Media.Color;
 
 namespace CynVee_Hash_Checker;
 
@@ -36,11 +31,15 @@ public partial class MainWindow : Window
             Title = "Open Text File",
             AllowMultiple = false
         });
-
+        
         if (file.Count >= 1)
         {
-            _filePath = file.First().Path.LocalPath;
+            _filePath = file[0].Path.LocalPath;
             FilePathBlock.Text = "Currently Selected File: " + _filePath;
+        }
+        else
+        {
+            Console.WriteLine("No File Selected");
         }
     }
     
