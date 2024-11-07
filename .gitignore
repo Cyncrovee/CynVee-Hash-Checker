@@ -9,3 +9,4 @@ publish/
 *.coveragexml
 
 packages
+/.vs/CynVee-Hash-Checker
