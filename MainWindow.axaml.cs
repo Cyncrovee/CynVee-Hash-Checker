@@ -161,7 +161,7 @@ public partial class MainWindow : Window
 
             if (Sha1TextBox.Text != null)
             {
-                bool sha1Result = Sha1TextBox.Text.Equals(_sha1String);
+                bool sha1Result = Sha1TextBox.Text.Equals(_sha1String, StringComparison.OrdinalIgnoreCase);
                 if (sha1Result == true)
                 {
                     Sha1ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha1String;
@@ -175,7 +175,7 @@ public partial class MainWindow : Window
             }
             if (Sha256TextBox.Text != null)
             {
-                bool sha256Result = Sha256TextBox.Text.Equals(_sha256String);
+                bool sha256Result = Sha256TextBox.Text.Equals(_sha256String, StringComparison.OrdinalIgnoreCase);
                 if (sha256Result == true)
                 {
                     Sha256ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha256String;
@@ -189,7 +189,7 @@ public partial class MainWindow : Window
             }
             if (Sha384TextBox.Text != null)
             {
-                bool sha384Result = Sha384TextBox.Text.Equals(_sha384String);
+                bool sha384Result = Sha384TextBox.Text.Equals(_sha384String, StringComparison.OrdinalIgnoreCase);
                 if (sha384Result == true)
                 {
                     Sha384ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha384String;
@@ -203,7 +203,7 @@ public partial class MainWindow : Window
             }
             if (Sha512TextBox.Text != null)
             {
-                bool sha512Result = Sha512TextBox.Text.Equals(_sha512String);
+                bool sha512Result = Sha512TextBox.Text.Equals(_sha512String, StringComparison.OrdinalIgnoreCase);
                 if (sha512Result == true)
                 {
                     Sha512ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha512String;
@@ -217,7 +217,7 @@ public partial class MainWindow : Window
             }
             if (Md5TextBox.Text != null)
             {
-                bool md5Result = Md5TextBox.Text.Equals(_md5String);
+                bool md5Result = Md5TextBox.Text.Equals(_md5String, StringComparison.OrdinalIgnoreCase);
                 if (md5Result == true)
                 {
                     Md5ResultBlock.Text = "Result: True- Hashes match! Value: " + _md5String;
