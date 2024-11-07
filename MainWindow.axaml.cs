@@ -135,15 +135,33 @@ public partial class MainWindow : Window
     {
         try
         {
-            _sha1String = CalculateSha1();
-            _sha256String = CalculateSha256();
-            _sha512String = CalculateSha512();
-            _sha384String = CalculateSha384();
-            _md5String = CalculateMd5();
+            var customHasher = new CustomHasher();
+
+            using (var stream = File.OpenRead(_filePath))
+            {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+
+                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    customHasher.TransformBlock(buffer, 0, bytesRead);
+                }
+
+                customHasher.TransformFinalBlock();
+
+            }
+
+            var hashList = customHasher.GetHashes();
+
+            _sha1String = hashList[Algorithm.SHA1];
+            _sha256String = hashList[Algorithm.SHA256];
+            _sha512String = hashList[Algorithm.SHA512];
+            _sha384String = hashList[Algorithm.SHA384];
+            _md5String = hashList[Algorithm.MD5];
 
             if (Sha1TextBox.Text != null)
             {
-                bool sha1Result = Sha1TextBox.Text.Equals(_sha1String);
+                bool sha1Result = Sha1TextBox.Text.Equals(_sha1String, StringComparison.OrdinalIgnoreCase);
                 if (sha1Result == true)
                 {
                     Sha1ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha1String;
@@ -157,7 +175,7 @@ public partial class MainWindow : Window
             }
             if (Sha256TextBox.Text != null)
             {
-                bool sha256Result = Sha256TextBox.Text.Equals(_sha256String);
+                bool sha256Result = Sha256TextBox.Text.Equals(_sha256String, StringComparison.OrdinalIgnoreCase);
                 if (sha256Result == true)
                 {
                     Sha256ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha256String;
@@ -171,7 +189,7 @@ public partial class MainWindow : Window
             }
             if (Sha384TextBox.Text != null)
             {
-                bool sha384Result = Sha384TextBox.Text.Equals(_sha384String);
+                bool sha384Result = Sha384TextBox.Text.Equals(_sha384String, StringComparison.OrdinalIgnoreCase);
                 if (sha384Result == true)
                 {
                     Sha384ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha384String;
@@ -185,7 +203,7 @@ public partial class MainWindow : Window
             }
             if (Sha512TextBox.Text != null)
             {
-                bool sha512Result = Sha512TextBox.Text.Equals(_sha512String);
+                bool sha512Result = Sha512TextBox.Text.Equals(_sha512String, StringComparison.OrdinalIgnoreCase);
                 if (sha512Result == true)
                 {
                     Sha512ResultBlock.Text = "Result: True- Hashes match! Value: " + _sha512String;
@@ -199,7 +217,7 @@ public partial class MainWindow : Window
             }
             if (Md5TextBox.Text != null)
             {
-                bool md5Result = Md5TextBox.Text.Equals(_md5String);
+                bool md5Result = Md5TextBox.Text.Equals(_md5String, StringComparison.OrdinalIgnoreCase);
                 if (md5Result == true)
                 {
                     Md5ResultBlock.Text = "Result: True- Hashes match! Value: " + _md5String;
@@ -215,61 +233,6 @@ public partial class MainWindow : Window
         catch
         {
             Console.WriteLine("Failed to calculate!");
-        }
-    }
-    public string CalculateSha1()
-    {
-        using (var sha1 = SHA1.Create())
-        {
-            using (var stream = File.OpenRead(_filePath))
-            {
-                var hash = sha1.ComputeHash(stream);
-                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
-            }
-        }
-    }
-    public string CalculateSha256()
-    {
-        using (var sha256 = SHA256.Create())
-        {
-            using (var stream = File.OpenRead(_filePath))
-            {
-                var hash = sha256.ComputeHash(stream);
-                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
-            }
-        }
-    }
-    public string CalculateSha384()
-    {
-        using (var sha384 = SHA384.Create())
-        {
-            using (var stream = File.OpenRead(_filePath))
-            {
-                var hash = sha384.ComputeHash(stream);
-                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
-            }
-        }
-    }
-    public string CalculateSha512()
-    {
-        using (var sha512 = SHA512.Create())
-        {
-            using (var stream = File.OpenRead(_filePath))
-            {
-                var hash = sha512.ComputeHash(stream);
-                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
-            }
-        }
-    }
-    public string CalculateMd5()
-    {
-        using (var md5 = MD5.Create())
-        {
-            using (var stream = File.OpenRead(_filePath))
-            {
-                var hash = md5.ComputeHash(stream);
-                return BitConverter.ToString(hash).Replace("-", String.Empty).ToLowerInvariant();
-            }
         }
     }
 }
